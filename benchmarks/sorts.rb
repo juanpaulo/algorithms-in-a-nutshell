@@ -7,7 +7,7 @@ require 'rbench'
 
 RBench.run(10) do
 
-  sorts = %w(ruby insertion_sort)
+  sorts = %w(ruby insertion_sort quick_sort)
   sorts.each { |sort| self.send(:column, sort.intern) }
 
   n = 1000
@@ -15,6 +15,7 @@ RBench.run(10) do
   proc = lambda { |scope, ary|
     scope.ruby { ary.dup.sort }
     scope.insertion_sort { Sort.insertion_sort(ary.dup) }
+    scope.quick_sort { Sort.quick_sort(ary.dup) }
   }
 
   report "Already sorted" do
