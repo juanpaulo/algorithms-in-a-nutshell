@@ -90,5 +90,33 @@ module Algorithms::Sort
     container[store], container[right] = container[right], container[store] # swap store and right
     store
   end
+
+  # Name: Selection Sort
+  # Context: ???
+  # Best: О(n^2)
+  # Average: О(n^2)
+  # Worst: О(n^2)
+  # Concepts: ??
+  def self.selection_sort(container)
+    (0..container.size - 1).each do |i|
+      max_pos = 0
+      right = container.size - 1 - i
+      (1..right).each do |j|
+        max_pos = j if container[j] > container[max_pos]
+      end
+      container[max_pos], container[right] = container[right], container[max_pos]
+    end
+    container
+  end
+
+  # Name: Heap Sort
+  # Context: HEAP SORT is not a stable sort. Because it moves elements around quite frequently, it should not be used for value-based data.
+  # Best: О(n log n)
+  # Average: О(n log n)
+  # Worst: О(n log n)
+  # Concepts: Array, Recursion, Binary Heap
+  def self.heap_sort(container)
+    # TODO
+  end
 end
 
