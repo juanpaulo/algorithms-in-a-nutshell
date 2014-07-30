@@ -24,40 +24,41 @@ module Algorithms::Sort
   # Average: О(n log n)
   # Worst: О(n^2)
   # Concepts: Recursion, Array, Divide and Conquer
-  def swap_elements(array, element_1, element_2)
+  def self.swap_elements(array, element_1, element_2)
     array[element_1], array[element_2] = array[element_2], array[element_1]
   end
 
-  def find_median(array)
+  def self.find_median(array)
     sorted = array.sort
     len = sorted.length
     return (sorted[(len - 1) / 2] + sorted[len / 2]) / 2
   end
 
-  def median_sort(container, left=0, right=container.size-1)
-    return container if right <= left
-    puts container.inspect
+  def self.median_sort(container, left=0, right=container.size-1)
+    # TODO
+    # return container if right <= left
+    # puts container.inspect
 
-    #find median value median in container[left..right]
-    median = find_median(container[left..right])
-    me = container.index(median)
-    mid = (right + left) / 2
-    puts "=> #{median}, #{me}, #{mid}"
+    # #find median value median in container[left..right]
+    # median = find_median(container[left..right])
+    # me = container.index(median)
+    # mid = (right + left) / 2
+    # puts "=> #{median}, #{me}, #{mid}"
 
-    swap_elements(container, mid, me)
-    puts container.inspect
-    container[left..(mid - 1)].each_with_index do |left_value, i|
-      if left_value > median
-        k = container[(mid + 1)..right].find_index { |right_value| right_value <= median }
-        puts "=> #{i}, #{k}"
-        swap_elements(container, i, mid + 1 + k) unless k.nil?
-        puts container.inspect
-      end
-    end
-    puts container.inspect
-    puts "==="
-    median_sort(container, left, mid - 1)
-    median_sort(container, mid + 1, right)
+    # swap_elements(container, mid, me)
+    # puts container.inspect
+    # container[left..(mid - 1)].each_with_index do |left_value, i|
+    #   if left_value > median
+    #     k = container[(mid + 1)..right].find_index { |right_value| right_value <= median }
+    #     puts "=> #{i}, #{k}"
+    #     swap_elements(container, i, mid + 1 + k) unless k.nil?
+    #     puts container.inspect
+    #   end
+    # end
+    # puts container.inspect
+    # puts "==="
+    # median_sort(container, left, mid - 1)
+    # median_sort(container, mid + 1, right)
   end
 
   # Name: Quick Sort
