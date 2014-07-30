@@ -1,5 +1,4 @@
 module Algorithms::Sort
-
   # Name: Insertion Sort
   # Context: Use INSERTION SORT when you have a small number of elements to sort or the elements in the initial collection are already “nearly sorted.” Determining when the array is “small enough” varies from one machine to another and by program- ming language. Indeed, even the type of element being compared may be significant.
   # Best: О(n)
@@ -117,6 +116,59 @@ module Algorithms::Sort
   # Concepts: Array, Recursion, Binary Heap
   def self.heap_sort(container)
     # TODO
+  end
+
+  # Name: Counting Sort
+  # Context: ??
+  # Best: О(n)
+  # Average: О(n)
+  # Worst: О(n)
+  # Concepts: Array
+  def self.counting_sort(container)
+    buckets = []
+    container.each do |value|
+      buckets[value] ||= 0
+      buckets[value] += 1
+    end
+    idx = 0
+    buckets.each_with_index do |value, i|
+      value = 0 if value.nil?
+      while value > 0 do
+        container[idx] = i
+        idx += 1
+        value -= 1
+      end
+    end
+    container
+  end
+
+  # Name: Bucket Sort
+  # Context: BUCKET SORT is the fastest sort when the elements to be sorted can be uniformly partitioned using a fast hashing function.
+  # Best: О(n)
+  # Average: О(n)
+  # Worst: О(n)
+  # Concepts: Array, Hash
+  def self.bucket_sort(container)
+    buckets = []
+    container.map do |value|
+      k = value/3
+      buckets[k] ||= []
+      buckets[k] << value
+    end
+    extract(buckets, container)
+    container
+  end
+
+  def self.extract(buckets, container)
+    idx = 0
+    buckets.each do |bucket|
+      next if bucket.nil?
+      insertion_sort(bucket)
+      bucket.each_with_index do |value, m|
+        container[idx] = value
+        idx += 1
+      end
+    end
   end
 end
 
